@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Headder = () => {
+const Header = () => {
   return (
     <header>
         <h1>To do list </h1>
@@ -8,4 +8,4 @@ const Headder = () => {
   )
 }
 
-export default Headder
+export default Header
