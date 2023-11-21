@@ -63,9 +63,16 @@ import { LuTrash2 } from "react-icons/lu";
         const listItem = items.map((item) => 
             item.id === id ? {...item,checked:!item.checked} : item)
         setItem(listItem)
-        
-
       }
+
+      const handleDelete = (id ) => {
+        const listItem = items.filter((item) =>(
+                   item.id !== id ))
+        setItem(listItem)
+      }
+
+      
+      
 
     return (
         // <main>
@@ -100,7 +107,8 @@ import { LuTrash2 } from "react-icons/lu";
                   <label>{item.item}</label>
                   <LuTrash2
                   role = 'button'
-                  tabIndex='0' />
+                  tabIndex='0'
+                  onClick={() => handleDelete(item.id) } />
                   
                 </li>
               ))}
