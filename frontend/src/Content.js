@@ -63,12 +63,14 @@ import { LuTrash2 } from "react-icons/lu";
         const listItem = items.map((item) => 
             item.id === id ? {...item,checked:!item.checked} : item)
         setItem(listItem)
+        localStorage.setItem('todo list',JSON.stringify(listItem))
       }
 
       const handleDelete = (id ) => {
         const listItem = items.filter((item) =>(
                    item.id !== id ))
         setItem(listItem)
+        localStorage.setItem('todo list',JSON.stringify(listItem))
       }
 
       
@@ -95,6 +97,7 @@ import { LuTrash2 } from "react-icons/lu";
 
 
         <main>
+          { items.length  ? (
             <ul>
               { items.map((item)=>(
                 <li className='item' key={item.id}>
@@ -104,7 +107,11 @@ import { LuTrash2 } from "react-icons/lu";
 
 
                   checked = {item.checked}  />
-                  <label>{item.item}</label>
+                  <label
+                  onDoubleClick={ ()=> handleCheck(item.id) }
+                  style = {(item.checked)? {textDecoration:'line-through'} : null}
+                  >
+                    {item.item}</label>
                   <LuTrash2
                   role = 'button'
                   tabIndex='0'
@@ -112,7 +119,10 @@ import { LuTrash2 } from "react-icons/lu";
                   
                 </li>
               ))}
-            </ul>
+            </ul>) : (
+              <p>Your list is empty</p>
+            )
+  }
         </main>
  
     )
